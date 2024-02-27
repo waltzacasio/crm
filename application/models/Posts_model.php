@@ -87,7 +87,6 @@ class Posts_model extends CI_Model{
             $this->db->or_like('technician', $word);
             $this->db->or_like('remarks', $word);
             $this->db->or_like('tableName', $word);
-            // $this->db->or_like('tableName', $word, 'both');
             // Add more columns if needed
             $this->db->group_end();
         }
