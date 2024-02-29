@@ -44,18 +44,14 @@ class Pages extends CI_Controller{
     
             $data['posts'] = $this->Posts_model->get_posts_single($param1, $param2);
             $data['title'] = "Customer Details" ?? null;
-            $data['firstName'] = $data['posts']['firstName'] ?? null;
-            $data['lastName'] = $data['posts']['lastName'] ?? null;
+            $data['first_name'] = $data['posts']['first_name'] ?? null;
+            $data['last_name'] = $data['posts']['last_name'] ?? null;
             $data['address'] = $data['posts']['address'] ?? null;
-            $data['boxNumber'] = $data['posts']['boxNumber'] ?? null;
-            $data['chipid'] = $data['posts']['chipid'] ?? null;
-            $data['cca'] = $data['posts']['cca'] ?? null;
-            $data['stb'] = $data['posts']['stb'] ?? null;
-            $data['transactionType'] = $data['posts']['transactionType'] ?? null;
-            $data['dateOfPurchase'] = $data['posts']['dateOfPurchase'] ?? null;
-            $data['type'] = $data['posts']['type'] ?? null;
-            $data['contact'] = $data['posts']['contact'] ?? null;
-            $data['installer'] = $data['posts']['installer'] ?? null;
+            $data['serial_number'] = $data['posts']['serial_number'] ?? null;
+            $data['transaction_type'] = $data['posts']['transaction_type'] ?? null;
+            $data['date_of_purchase'] = $data['posts']['date_of_purchase'] ?? null;
+            $data['email'] = $data['posts']['email'] ?? null;
+            $data['technician'] = $data['posts']['technician'] ?? null;
             $data['remarks'] = $data['posts']['remarks'] ?? null;
             
             $data['id'] = $data['posts']['id'] ?? null;
@@ -308,7 +304,7 @@ public function add() {
 
 }
 
-public function edit($boxType, $boxNumber, $id){
+public function edit($productType, $boxNumber, $id){
 
     if (!$this->session->userdata('logged_in')) {
         // If not logged in, redirect to the login page
@@ -330,21 +326,17 @@ public function edit($boxType, $boxNumber, $id){
             show_404();
         }
 //Populate form, from database
-            $data['posts'] = $this->Posts_model->get_posts_edit($boxType, $id);
+            $data['posts'] = $this->Posts_model->get_posts_edit($productType, $id);
             $data['title'] = "Edit Customer Details";
-            $data['firstName'] = $data['posts']['firstName'] ?? null;
-            $data['lastName'] = $data['posts']['lastName'] ?? null;
+            $data['firstName'] = $data['posts']['first_name'] ?? null;
+            $data['lastName'] = $data['posts']['last_name'] ?? null;
             $data['address'] = $data['posts']['address'] ?? null;
-            $data['boxType'] = $boxType ?? null;
-            $data['boxNumber'] = $data['posts']['boxNumber'] ?? null;
-            $data['chipid'] = $data['posts']['chipid'] ?? null;
-            $data['cca'] = $data['posts']['cca'] ?? null;
-            $data['stb'] = $data['posts']['stb'] ?? null;
-            $data['transactionType'] = $data['posts']['transactionType'] ?? null;
-            $data['dateOfPurchase'] = $data['posts']['dateOfPurchase'] ?? null;
-            $data['type'] = $data['posts']['type'] ?? null;
-            $data['contact'] = $data['posts']['contact'] ?? null;
-            $data['installer'] = $data['posts']['installer'] ?? null;
+            $data['productType'] = $productType ?? null;
+            $data['serialNumber'] = $data['posts']['serial_number'] ?? null;
+            $data['transactionType'] = $data['posts']['transaction_type'] ?? null;
+            $data['dateOfPurchase'] = $data['posts']['date_of_purchase'] ?? null;
+            $data['email'] = $data['posts']['email'] ?? null;
+            $data['technician'] = $data['posts']['technician'] ?? null;
             $data['remarks'] = $data['posts']['remarks'] ?? null;
 
             $data['id'] = $data['posts']['id'] ?? null;
@@ -358,9 +350,9 @@ public function edit($boxType, $boxNumber, $id){
     }else{
 
         //$this->Posts_model->update_post();
-        $this->Posts_model->update_post_with_edit_log($boxType, $boxNumber, $id);
+        $this->Posts_model->update_post_with_edit_log($productType, $boxNumber, $id);
         $this->session->set_flashdata('post_updated','This customer was updated!');
-        redirect(base_url() . 'details/' . $boxType ."/" . $id);
+        redirect(base_url() . 'details/' . $productType ."/" . $id);
 
     }
 

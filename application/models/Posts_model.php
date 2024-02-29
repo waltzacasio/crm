@@ -22,7 +22,7 @@ class Posts_model extends CI_Model{
 
         if (!$doesProduct_1_ViewExists) {
             $createViewQuery = "CREATE VIEW $product_1_View AS
-                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product 1' AS tableName
+                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product_1' AS tableName
                 FROM product_1";
             $this->db->query($createViewQuery);
         }
@@ -35,7 +35,7 @@ class Posts_model extends CI_Model{
 
         if (!$doesProduct_2_ViewExists) {
             $createViewQuery = "CREATE VIEW $product_2_View AS
-                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product 2' AS tableName
+                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product_2' AS tableName
                 FROM product_2";
             $this->db->query($createViewQuery);
         }
@@ -48,7 +48,7 @@ class Posts_model extends CI_Model{
 
         if (!$doesProduct_3_ViewExists) {
             $createViewQuery = "CREATE VIEW $product_3_View AS
-                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product 3' AS tableName
+                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product_3' AS tableName
                 FROM product_3";
             $this->db->query($createViewQuery);
         }
@@ -61,7 +61,7 @@ class Posts_model extends CI_Model{
 
         if (!$doesProduct_4_ViewExists) {
             $createViewQuery = "CREATE VIEW $product_4_View AS
-                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product 4' AS tableName
+                SELECT id, first_name, last_name, address, serial_number, transaction_type, date_of_purchase, email, technician, remarks, 'Product_4' AS tableName
                 FROM product_4";
             $this->db->query($createViewQuery);
         }
@@ -81,12 +81,12 @@ class Posts_model extends CI_Model{
             $this->db->or_like('last_name', $word);
             $this->db->or_like('address', $word);
             $this->db->or_like('serial_number', $word);
-            $this->db->or_like('transaction_type', $word);
+            $this->db->or_like('transaction_type', $word);  
             $this->db->or_like('date_of_purchase', $word);
             $this->db->or_like('email', $word);
             $this->db->or_like('technician', $word);
             $this->db->or_like('remarks', $word);
-            $this->db->or_like('tableName', $word);
+            $this->db->or_like('tableName', $word, 'both');
             // Add more columns if needed
             $this->db->group_end();
         }
@@ -109,7 +109,7 @@ class Posts_model extends CI_Model{
             $this->db->or_like('email', $word);
             $this->db->or_like('technician', $word);
             $this->db->or_like('remarks', $word);
-            $this->db->or_like('tableName', $word);
+            $this->db->or_like('tableName', $word, 'both');
             // Add more columns if needed
             $this->db->group_end();
         }
@@ -132,7 +132,7 @@ class Posts_model extends CI_Model{
             $this->db->or_like('email', $word);
             $this->db->or_like('technician', $word);
             $this->db->or_like('remarks', $word);
-            $this->db->or_like('tableName', $word);
+            $this->db->or_like('tableName', $word, 'both');
             // Add more columns if needed
             $this->db->group_end();
         }
@@ -155,7 +155,7 @@ class Posts_model extends CI_Model{
             $this->db->or_like('email', $word);
             $this->db->or_like('technician', $word);
             $this->db->or_like('remarks', $word);
-            $this->db->or_like('tableName', $word);
+            $this->db->or_like('tableName', $word, 'both');
             // Add more columns if needed
             $this->db->group_end();
         }
@@ -236,10 +236,10 @@ class Posts_model extends CI_Model{
         return $result->row_array();
     }
 
-    public function get_posts_edit($boxType, $id){
+    public function get_posts_edit($productType, $id){
 
         $this->db->where('id', $id);
-        $result = $this->db->get($this->db->escape_identifiers($boxType));
+        $result = $this->db->get($this->db->escape_identifiers($productType));
 
         return $result->row_array();
     }
@@ -432,14 +432,14 @@ class Posts_model extends CI_Model{
 
         //new value
         $formData = array(
-            'firstName' => strtoupper($this->input->post('firstname')),
-            'lastName' => strtoupper($this->input->post('lastname')),
+            'first_name' => strtoupper($this->input->post('firstname')),
+            'last_name' => strtoupper($this->input->post('lastname')),
             'address' => $this->input->post('address'),
-            'dateOfPurchase' => $this->input->post('dateofpurchase'),
-            'contact' => $this->input->post('contact'),
-            'installer' => $this->input->post('installer'),
+            'date_of_purchase' => $this->input->post('dateofpurchase'),
+            'email' => $this->input->post('contact'),
+            'technician' => $this->input->post('installer'),
             'remarks' => $this->input->post('remarks'),
-            'transactionType' => $this->input->post('transactiontype')
+            'transaction_type' => $this->input->post('transactiontype')
         );
 
         // Compare each field in the form with the corresponding field in the database record
@@ -564,10 +564,10 @@ class Posts_model extends CI_Model{
             'timeStamp' => $timeStamp,
             'user' => $user,
             'reason' => $reason,
-            'boxType' => $boxType,
+            'product_type' => $boxType,
         ];
 
-        $startKey = 'lastName';
+        $startKey = 'first_name';
         $start = false;
 
         foreach ($data as $key => $value) {
@@ -584,21 +584,21 @@ class Posts_model extends CI_Model{
         $this->db->insert($targetTable, $dataToInsert);
 
         switch ($boxType) {
-            case 'gpinoy':
+            case 'product_1':
                 $this->db->where('id', $id);
-                $this->db->delete('gpinoy');
+                $this->db->delete('product_1');
                 break;
-            case 'gsathd':
+            case 'product_2':
                 $this->db->where('id', $id);
-                $this->db->delete('gsathd');
+                $this->db->delete('product_2');
                 break;
-            case 'cignal':
+            case 'product_3':
                 $this->db->where('id', $id);
-                $this->db->delete('cignal');
+                $this->db->delete('product_3');
                 break;
-            case 'satlite':
+            case 'product_4':
                 $this->db->where('id', $id);
-                $this->db->delete('satlite');
+                $this->db->delete('product_4');
                 break;
         }
     

@@ -14,17 +14,17 @@
 
         
 
-            <?= form_open('edit/'.$boxType . "/" . $boxNumber . "/" . $id);?>
+            <?= form_open('edit/'.$productType . "/" . $serialNumber . "/" . $id);?>
 
         <div class="form-group">
         <br>
 
                 <p><b>Box Type : </b>
-        <input type="hidden" name="boxtype" class="form-control"  value="<?= $boxType; ?>">
-        <?php if($boxType == "gpinoy"){echo '<button type="button" class="btn btn-success">GPinoy</button>';}
-            else if($boxType == "gsathd"){echo '<button type="button" class="btn btn-primary">GSat HD</button>';}
-            else if ($boxType == "cignal"){echo '<button type="button" class="btn btn-danger">Cignal ' . $type . '</button>';}
-            else if ($boxType == "satlite"){echo '<button class="btn" style="background-color: #fd7e14; color: white;">Satlite</button>';} ?>
+        <input type="hidden" name="boxtype" class="form-control"  value="<?= $productType; ?>">
+        <?php if($productType == "product_1"){echo '<button type="button" class="btn btn-success">Product 1</button>';}
+            else if($productType == "product_2"){echo '<button type="button" class="btn btn-primary">Product 2</button>';}
+            else if ($productType == "product_3"){echo '<button type="button" class="btn btn-danger">Product 3</button>';}
+            else if ($productType == "product_4"){echo '<button class="btn" style="background-color: #fd7e14; color: white;">Product 4</button>';} ?>
         </p>
 
         <div class="row align-items-start">
@@ -50,8 +50,8 @@
             </div>
                 <br>
             <div class="col">
-                <b>Contact No. :</b>
-                <input type="text" name="contact" class="form-control"  placeholder="Enter Contact No." value="<?php echo set_value('contact', $contact); ?>">
+                <b>Email :</b>
+                <input type="text" name="contact" class="form-control"  placeholder="Enter Contact No." value="<?php echo set_value('contact', $email); ?>">
                 <br>
             </div>
         </div> 
@@ -64,34 +64,11 @@
 
         <div class="row align-items-start">
             <div class="col">
-                <span><b id="boxnumber-label">Box Number :</b></span>
-                <input type="hidden" name="boxnumber" class="form-control"  value="<?= $boxNumber;?>"> 
-                <input type="text" name="boxnumber-display" class="form-control"  value="<?= $boxNumber;?>" style="color: gray;" disabled > 
+                <span><b id="boxnumber-label">Serial Number :</b></span>
+                <input type="hidden" name="boxnumber" class="form-control"  value="<?= $serialNumber;?>"> 
+                <input type="text" name="boxnumber-display" class="form-control"  value="<?= $serialNumber;?>" style="color: gray;" disabled > 
             </div>
                 <br> 
-            <div class="col">
-                <span id="chipid-label"><b>Chip ID :</b>
-                <input type="hidden" name="chipid" class="form-control"  value="<?= $chipid;?>">
-                <input type="text" name="chipid-display" class="form-control"  placeholder="<?= $chipid;?>" disabled>
-               </span>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row align-items-start">
-            <div class="col">
-                <span id="cca-label"><b>CCA No. :</b>
-                <input type="hidden" name="cca" class="form-control"  value="<?= $cca;?>">
-                <input type="text" name="cca-display" class="form-control"  placeholder="<?= $cca;?>" disabled>
-                <br></span> 
-            </div>
-            <div class="col">
-                <span id="stb-label"><b>STB ID :</b>
-                <input type="hidden" name="stb" class="form-control"  value="<?= $stb;?>"> 
-                <input type="text" name="stb-display" class="form-control"  placeholder="<?= $stb;?>" disabled> 
-                </span>
-            </div>
         </div>
 
         <br>
@@ -111,9 +88,9 @@
         </div>
         <br> 
 
-        <b>Installer :</b>
-        <input type="hidden" name="installer" class="form-control" value="<?= $installer;?>">
-        <input type="text" name="installer" class="form-control"  placeholder="<?= $installer;?>" disabled> 
+        <b>Technician :</b>
+        <input type="hidden" name="installer" class="form-control" value="<?= $technician;?>">
+        <input type="text" name="installer" class="form-control"  placeholder="<?= $technician;?>" disabled> 
         <br>
 
         </div>

@@ -45,19 +45,19 @@
       <td class="text-start align-middle"><?= $row['last_name'];?></td>
       <td class="text-start align-middle"><?= $row['first_name'];?></td>
       <td class="text-center align-middle"><?= $row['address'];?></td>
-      <td <?php if($row['tableName'] == "Product 1"){echo 'class="table-success text-center align-middle"';}
-      else if($row['tableName'] == "Product 2"){echo 'class="table-primary text-center align-middle"';}
-      else if ($row['tableName'] == "Product 3"){echo 'class="table-danger text-center align-middle"';}
-      else if ($row['tableName'] == "Product 4"){echo 'class="table-warning text-center align-middle"';}?>><?= $row['tableName'];?></td>
+      <td <?php if($row['tableName'] == "Product_1"){echo 'class="table-success text-center align-middle"';}
+      else if($row['tableName'] == "Product_2"){echo 'class="table-primary text-center align-middle"';}
+      else if ($row['tableName'] == "Product_3"){echo 'class="table-danger text-center align-middle"';}
+      else if ($row['tableName'] == "Product_4"){echo 'class="table-warning text-center align-middle"';}?>><?= $row['tableName'];?></td>
       <td class="text-center align-middle"><b><?= $row['serial_number'];?></b></td>
       <td class="text-center align-middle"><?= $row['transaction_type'];?></td>
       <td class="text-center align-middle"><?= $row['date_of_purchase'];?></td>
       <td class="text-center align-middle"><?= $row['technician'];?></td>
       <td class="text-center align-middle"><?= $row['remarks'];?></td>
-      <td class="text-center align-middle"><a href="<?= base_url() . "details/";?><?php if($row['tableName'] == "Product 1"){echo "Product 1";}
-      else if($row['tableName'] == "Product 2"){echo "Product 2";}
-      else if ($row['tableName'] == "Product 3"){echo "Product 3";}
-      else if ($row['tableName'] == "Product 4"){echo "Product 4";}?><?= "/" . $row['id'];?>">
+      <td class="text-center align-middle"><a href="<?= base_url() . "details/";?><?php if($row['tableName'] == "Product_1"){echo "product_1";}
+      else if($row['tableName'] == "Product_2"){echo "product_2";}
+      else if ($row['tableName'] == "Product_3"){echo "product_3";}
+      else if ($row['tableName'] == "Product_4"){echo "product_4";}?><?= "/" . $row['id'];?>">
       <?= '<button type="button" class="btn btn-primary btn-sm text-nowrap">View Details</button>' ?></a></td>
     </tr>
     <?php } ?>
